@@ -834,5 +834,51 @@
     </div>
 
     <script src="app.js"></script>
+
+
+
+<script>
+function sendDepositRequest() {
+
+  let name = document.getElementById("name").value;
+  let amount = document.getElementById("amount").value;
+  let utr = document.getElementById("utr").value;
+
+  if (name === "" || amount === "" || utr === "") {
+    alert("❌ Sab details bharo");
+    return;
+  }
+
+  let message =
+    "💰 NEW DEPOSIT REQUEST\n\n" +
+    "👤 Name: " + name + "\n" +
+    "💵 Amount: ₹" + amount + "\n" +
+    "🔢 UTR: " + utr;
+
+  let botToken = "8580137718:AAGhKVUHIRw10FoUYn0RbXYci6G0zaSghxQ";
+  let chatId = "7081067921";
+
+  let url = "https://api.telegram.org/bot" + botToken +
+            "/sendMessage?chat_id=" + chatId +
+            "&text=" + encodeURIComponent(message);
+
+  fetch(url)
+    .then(() => {
+      alert("✅ Deposit request send ho gayi");
+      document.getElementById("name").value = "";
+      document.getElementById("amount").value = "";
+      document.getElementById("utr").value = "";
+    })
+    .catch(() => {
+      alert("❌ Error aayi, dobara try karo");
+    });
+}
+</script>
+
+
+
+
+    
 </body>
+
 </html>
