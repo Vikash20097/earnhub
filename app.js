@@ -3503,3 +3503,172 @@ document.addEventListener('click', function(e) {
         closeAlertModal();
     }
 });
+
+
+
+
+const ADMIN_SECRET_KEY = "vikash-admin-123"; // apni marzi se change kar sakta hai
+
+
+function submitDeposit() {
+    const amount = Number(document.getElementById("customAmount").value);
+    const refId = document.getElementById("transactionRefId").value;
+
+    if (!amount || amount <= 0) {
+        alert("Amount galat hai");
+        return;
+    }
+    if (!refId) {
+        alert("Transaction ID daal");
+        return;
+    }
+
+    let requests = JSON.parse(localStorage.getItem("requests")) || [];
+
+    requests.push({
+        id: Date.now(),
+        type: "DEPOSIT",
+        userId: localStorage.getItem("earnhubCurrentUserId"),
+        amount: amount,
+        refId: refId,
+        status: "PENDING",
+        date: new Date().toLocaleString()
+    });
+
+    localStorage.setItem("requests", JSON.stringify(requests));
+
+    alert("Deposit request sent. Admin approval pending.");
+
+    loadHistory();
+}
+
+
+
+
+
+
+
+function submitWithdraw() {
+    const amount = Number(document.getElementById("withdrawAmount").value);
+    const method = document.getElementById("withdrawMethod").value;
+    const details = document.getElementById("withdrawDetails").value;
+
+    if (!amount || amount < 100) {
+        alert("Min ₹100 withdraw");
+        return;
+    }
+    if (!method || !details) {
+        alert("Withdraw details missing");
+        return;
+    }
+
+    let requests = JSON.parse(localStorage.getItem("requests")) || [];
+
+    requests.push({
+        id: Date.now(),
+        type: "WITHDRAW",
+        userId: localStorage.getItem("earnhubCurrentUserId"),
+        amount: amount,
+        method: method,
+        details: details,
+        status: "PENDING",
+        date: new Date().toLocaleString()
+    });
+
+    localStorage.setItem("requests", JSON.stringify(requests));
+
+    alert("Withdraw request sent");
+
+    loadHistory();
+}
+
+
+
+
+
+
+
+function unlockAdmin() {
+    const key = document.getElementById("adminKeyInput").value;
+
+    if (key !== ADMIN_SECRET_KEY) {
+        alert("Wrong admin key");
+        return;
+    }
+
+    document.getElementById("adminPanel").style.display = "block";
+    loadAdminPanel();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function loadAdminPanel() {
+    let requests = JSON.parse(localStorage.getItem("requests")) || [];
+    let box = document.getElementById("adminPanelList");
+    box.innerHTML = "";
+
+    requests.forEach((r, i) => {
+        box.innerHTML += `
+        <div style="border:1px solid #ccc;padding:6px;margin-bottom:6px">
+            <b>${r.type}</b> | ₹${r.amount} <br>
+            User: ${r.userId}<br>
+            Status: ${r.status}<br>
+            ${r.status === "PENDING" ? `
+            <button onclick="approveReq(${i})">Approve</button>
+            <button onclick="rejectReq(${i})">Reject</button>` : ""}
+        </div>`;
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function approveReq(i) {
+    let requests = JSON.parse(localStorage.getItem("requests"));
+    requests[i].status = "SUCCESS";
+    localStorage.setItem("requests", JSON.stringify(requests));
+    loadAdminPanel();
+    loadHistory();
+}
+
+function rejectReq(i) {
+    let requests = JSON.parse(localStorage.getItem("requests"));
+    requests[i].status = "REJECTED";
+    localStorage.setItem("requests", JSON.stringify(requests));
+    loadAdminPanel();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+window.addEventListener("load", loadHistory);
+
+
+
