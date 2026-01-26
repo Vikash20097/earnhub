@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Banking App</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>User Dashboard</h1>
+        <div id="user-info">
+            <p>Welcome, <span id="user-name"></span>!</p>
+            <p>Your Balance: $<span id="user-balance">0.00</span></p>
+        </div>
+        <div class="form-container">
+            <div id="deposit-form">
+                <h2>Deposit Request</h2>
+                <form id="depositForm">
+                    <input type="number" id="depositAmount" placeholder="Amount" step="0.01" min="0.01" required>
+                    <button type="submit">Submit Deposit Request</button>
+                </form>
+            </div>
+            <div id="withdraw-form">
+                <h2>Withdraw Request</h2>
+                <form id="withdrawForm">
+                    <input type="number" id="withdrawAmount" placeholder="Amount" step="0.01" min="0.01" required>
+                    <button type="submit">Submit Withdraw Request</button>
+                </form>
+            </div>
+        </div>
+        <div id="requests-status">
+            <h2>Your Requests</h2>
+            <div id="user-requests"></div>
+        </div>
+        <button id="logout">Logout</button>
+        <div id="message"></div>
+    </div>
+    <script src="firebase.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
