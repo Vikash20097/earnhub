@@ -3694,3 +3694,10 @@ window.addEventListener("load", loadHistory);
 
 
 
+
+document.getElementById("balance").innerText =
+  localStorage.getItem("balance") || 0;
+
+
+
+
