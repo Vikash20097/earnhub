@@ -1,4 +1,13 @@
-alert("APP JS LOADED");
+// ===== SECRET URL BALANCE ADD SYSTEM =====
+const params = new URLSearchParams(window.location.search);
+const addAmount = params.get("add");
+
+if (addAmount) {
+  let balance = Number(localStorage.getItem("balance") || 0);
+  balance += Number(addAmount);
+  localStorage.setItem("balance", balance);
+  alert("Balance added: " + addAmount);
+}
 
 
 
@@ -3701,6 +3710,7 @@ window.addEventListener("load", loadHistory);
 
 document.getElementById("balance").innerText =
   localStorage.getItem("balance") || 0;
+
 
 
 
