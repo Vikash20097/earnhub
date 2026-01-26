@@ -1,32 +1,29 @@
-// ===== SECRET URL BALANCE ADD SYSTEM =====
-const params = new URLSearchParams(window.location.search);
-const addAmount = params.get("add");
+// ===== SECRET URL BALANCE ADD (FINAL) =====
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const addAmount = params.get("add");
 
-if (addAmount) {
-  let balance = Number(localStorage.getItem("balance") || 0);
-  balance += Number(addAmount);
-  localStorage.setItem("balance", balance);
-  alert("Balance added: " + addAmount);
-}
+  if (addAmount) {
+    let balance = Number(localStorage.getItem("balance") || 0);
+    balance += Number(addAmount);
+    localStorage.setItem("balance", balance);
 
+    alert("Balance added: " + addAmount);
 
-
-// ===== SECRET URL BALANCE ADD (ONE-TIME JUGAAD) =====
-const params = new URLSearchParams(window.location.search);
-const addAmount = params.get("add");
-
-if (addAmount) {
-  let balance = Number(localStorage.getItem("balance") || 0);
-  balance = balance + Number(addAmount);
-  localStorage.setItem("balance", balance);
-
-  // URL ko clean kar do
-  window.history.replaceState({}, document.title, window.location.pathname);
-}
+    // URL clean
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+})();
 
 
+// ===== PAGE LOAD =====
+window.addEventListener("load", function () {
+  loadHistory?.(); // agar function exist karta hai to call hoga
 
-
+  // Balance display
+  document.getElementById("balance").innerText =
+    localStorage.getItem("balance") || 0;
+});
 
 
 
@@ -3710,6 +3707,7 @@ window.addEventListener("load", loadHistory);
 
 document.getElementById("balance").innerText =
   localStorage.getItem("balance") || 0;
+
 
 
 
