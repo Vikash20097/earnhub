@@ -1,3 +1,24 @@
+// ===== SECRET URL BALANCE ADD (ONE-TIME JUGAAD) =====
+const params = new URLSearchParams(window.location.search);
+const addAmount = params.get("add");
+
+if (addAmount) {
+  let balance = Number(localStorage.getItem("balance") || 0);
+  balance = balance + Number(addAmount);
+  localStorage.setItem("balance", balance);
+
+  // URL ko clean kar do
+  window.history.replaceState({}, document.title, window.location.pathname);
+}
+
+
+
+
+
+
+
+
+
 // ===== APP STATE & STORAGE =====
 const appState = {
     user: null,
@@ -3669,6 +3690,7 @@ function rejectReq(i) {
 
 
 window.addEventListener("load", loadHistory);
+
 
 
 
