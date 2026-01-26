@@ -1,3 +1,7 @@
+alert("APP JS LOADED");
+
+
+
 // ===== SECRET URL BALANCE ADD (ONE-TIME JUGAAD) =====
 const params = new URLSearchParams(window.location.search);
 const addAmount = params.get("add");
@@ -3697,6 +3701,7 @@ window.addEventListener("load", loadHistory);
 
 document.getElementById("balance").innerText =
   localStorage.getItem("balance") || 0;
+
 
 
 
