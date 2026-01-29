@@ -1,0 +1,30 @@
+- [x] Modify index.html to embed admin panel in wallet section after wallet-tabs
+- [x] Add admin unlock button in wallet section
+- [x] Update app.js to include admin logic: password check, show/hide panel, deposits approval, withdrawals approval, user balance control
+- [x] Ensure deposits/withdrawals are requests only, no auto balance change
+- [x] Update transaction history to show statuses
+- [x] Update styles for admin panel UI
+- [x] Add Refer & Earn page to navigation and content
+- [x] Add deposit QR scanner and instructions
+- [x] Implement referral logic in app.js
+- [x] Remove admin.html and admin.js references
+- [x] Update deposit reference to show actual user ID
+- [x] Change referral reward from ₹50 to ₹500
+- [x] Upgrade packages section UI with metal-themed colors and professional design
+- [x] Verify admin/wallet/transactions functionality
+- [x] Test functionality
+- [x] Implement mission unlocking logic based on deposit approval
+- [x] Add 7 advanced missions/games with mobile-optimized UI
+- [x] Update mission cards with hover effects, reward badges, and cooldown timers
+- [x] Implement game modals and complete game functionality
+- [x] Add deposit-required message when missions are locked
+- [x] Update CSS for mission cards and game modals
+- [x] Polish app for mobile-first design (360-430px width)
+- [x] Fix missions system: tap triggers proper rewards, cooldown, daily limits
+- [x] Ensure UI is fully mobile-friendly (cards, buttons, modals)
+- [x] Keep all previous features intact (wallet, admin panel, referral)
+- [x] Add 6-7 new missions with mobile-optimized UI
+- [x] Ensure "Deposit Required" prevents mission unlock if user hasn't deposited
+- [x] Check timers, games, and stop-watch missions
+- [x] Test critical-path flows: login, package purchase, missions, wallet requests, referral
+- [x] No broken elements, overlapping content, or scroll issues
