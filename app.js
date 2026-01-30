@@ -1848,3 +1848,29 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+function canPlayMission() {
+    if(!user.hasDeposited) {
+        alert("Deposit first to unlock this mission!");
+        return false;
+    }
+    return true;
+}
+
+
+function showMissionAd(mission) {
+    if(!canPlayMission()) return;
+
+    // Pseudo function - SDK के हिसाब से replace करना
+    showRewardedAd("ca-app-pub-7777155257112303/3889126462")
+    .then(() => {
+        // Reward user
+        user.balance += mission.reward;
+        localStorage.setItem('userBalance', user.balance);
+        updateDashboardUI();
+        alert(`Congrats! You earned ${mission.reward} coins`);
+    })
+    .catch(() => {
+        alert("Watch the full ad to get the reward!");
+    });
+}
