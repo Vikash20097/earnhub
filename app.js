@@ -1874,3 +1874,51 @@ function showMissionAd(mission) {
         alert("Watch the full ad to get the reward!");
     });
 }
+
+
+
+
+
+
+
+
+// Example user object
+let user = {
+    hasDeposited: false,   // deposit किया कि नहीं
+    balance: 0
+};
+
+// Update dashboard
+function updateDashboardUI() {
+    document.getElementById('dashboard-balance').innerText = "$" + user.balance;
+}
+
+// Check if mission can be played
+function canPlayMission() {
+    if(!user.hasDeposited) {
+        alert("Deposit first to unlock this mission!");
+        return false;
+    }
+    return true;
+}
+
+// Show Rewarded Ad for mission
+function showMissionAd(missionReward) {
+    if(!canPlayMission()) return;
+
+    // Pseudo ad function (replace with AdMob SDK function in app)
+    console.log("Showing Rewarded Ad...");
+    setTimeout(() => {
+        // Ad watched successfully
+        user.balance += missionReward; 
+        localStorage.setItem('userBalance', user.balance);
+        updateDashboardUI();
+        alert(`Congrats! You earned $${missionReward} for completing this mission`);
+    }, 2000); // simulate 2 sec ad watch
+}
+
+// Mission button click
+function missionClick(missionReward) {
+    showMissionAd(missionReward);
+}
+
