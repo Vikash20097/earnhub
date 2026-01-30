@@ -1922,3 +1922,14 @@ function missionClick(missionReward) {
     showMissionAd(missionReward);
 }
 
+
+
+
+
+function userDeposit(amount) {
+    user.hasDeposited = true;
+    user.balance += amount;
+    localStorage.setItem('userBalance', user.balance);
+    updateDashboardUI();
+    alert(`Deposit successful! You can now play missions.`);
+}
